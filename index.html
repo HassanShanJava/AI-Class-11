@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Mapping Arrays</title>
+  </head>
+  <body>
+    <div class="box">
+      <h1 class="heading">Mapping Arrays</h1>
+
+      <div class="container">
+        <div class="Matrix">
+          <span class="left">
+            <img src="./matrixLeft.png" alt="/" />
+          </span>
+
+          <div class="matrix">
+            <p>
+              <span id="array1">2 3 4</span>
+            </p>
+            <p id="array2">2 3 4</p>
+            <p>
+              <span id="array3">2 3 4</span>
+            </p>
+          </div>
+
+          <span class="right">
+            <img src="./matrixRight.png" alt="/" />
+          </span>
+        </div>
+
+        <div class="plus">
+          <p>+</p>
+        </div>
+
+        <div class="Matrix">
+          <span class="left">
+            <img src="./matrixLeft.png" alt="/" />
+          </span>
+
+          <div class="matrix">
+            <p>
+              <span id="array11">4 3 9</span>
+            </p>
+            <p id="array12">1 34 6</p>
+            <p>
+              <span id="array13">2 5 7</span>
+            </p>
+          </div>
+
+          <span class="right">
+            <img src="./matrixRight.png" alt="/" />
+          </span>
+        </div>
+
+        <div class="plus">
+          <p>=</p>
+        </div>
+
+        <div class="Matrix">
+          <span class="left">
+            <img src="./matrixLeft.png" alt="/" />
+          </span>
+
+          <div class="matrix">
+            <p>
+              <span id="result1">0 0 0</span>
+            </p>
+            <p id="result2">0 0 0</p>
+            <p>
+              <span id="result3">0 0 0</span>
+            </p>
+          </div>
+
+          <span class="right">
+            <img src="./matrixRight.png" alt="/" />
+          </span>
+        </div>
+      </div>
+
+      <div class="inner-box">
+        <form onclick="Add(); return false">
+          <button>Add</button>
+        </form>
+
+        <form onclick="Sub(); return false">
+          <button>Substract</button>
+        </form>
+
+        <form onchange="clear(); return false">
+          <button>Clear</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      // console.log(num, typeof num);
+      let item1 = document
+        .querySelector("#array1")
+        .innerHTML.split(" ")
+        .map(Number);
+      let item2 = document
+        .querySelector("#array2")
+        .innerHTML.split(" ")
+        .map(Number);
+      let item3 = document
+        .querySelector("#array3")
+        .innerHTML.split(" ")
+        .map(Number);
+      let array1 = [item1, item2, item3];
+
+      let item4 = document
+        .querySelector("#array11")
+        .innerHTML.split(" ")
+        .map(Number);
+      let item5 = document
+        .querySelector("#array12")
+        .innerHTML.split(" ")
+        .map(Number);
+      let item6 = document
+        .querySelector("#array13")
+        .innerHTML.split(" ")
+        .map(Number);
+      let array2 = [item4, item5, item6];
+
+      let result1 = [[], [], []];
+
+      let sum = 0;
+      let sub = 0;
+
+      function Add() {
+        result1 = [[], [], []];
+        console.log(array1, array2);
+
+        array1.map((array,i)=>{
+          array.map((list, j)=>{
+            result1[i][j]=list+array2[i][j]
+          })
+        })
+
+        document.querySelector(
+          "#result1"
+        ).innerHTML = `${result1[0][0]} ${result1[0][1]} ${result1[0][2]}`;
+        document.querySelector(
+          "#result2"
+        ).innerHTML = `${result1[1][0]} ${result1[1][1]} ${result1[1][2]}`;
+        document.querySelector(
+          "#result3"
+        ).innerHTML = `${result1[2][0]} ${result1[2][1]} ${result1[2][2]}`;
+      }
+
+      function Sub() {
+        result1 = [[], [], []];
+        array1.map((array,i)=>{
+          array.map((list, j)=>{
+            result1[i][j]=list-array2[i][j]
+          })
+        })
+
+        document.querySelector(
+          "#result1"
+        ).innerHTML = `${result1[0][0]} ${result1[0][1]} ${result1[0][2]}`;
+        document.querySelector(
+          "#result2"
+        ).innerHTML = `${result1[1][0]} ${result1[1][1]} ${result1[1][2]}`;
+        document.querySelector(
+          "#result3"
+        ).innerHTML = `${result1[2][0]} ${result1[2][1]} ${result1[2][2]}`;
+      }
+
+      function clear() {
+        document.querySelector("#result1").innerHTML = "0 0 0";
+        document.querySelector("#result2").innerHTML = "0 0 0";
+        document.querySelector("#result3").innerHTML = "0 0 0";
+      }
+    </script>
+  </body>
+</html>
